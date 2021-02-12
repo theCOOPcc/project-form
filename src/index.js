@@ -1,39 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import { 
-    ErrorMessage, 
     Formik, 
     Form, 
-    Field, 
-    useFormik,
     useField 
     } from 'formik';
 import * as Yup from 'yup'
+import * as Fields from './fields'
 import './styles.css';
-
-// custom validation with Formik:
-
-// const validate = values => {
-//     const errors = {};
-//     if (!values.firstName) {
-//         errors.firstName = 'Required';
-//     } else if (values.firstName.length > 15){
-//         errors.firstName = 'Must be 15 characters or less';
-//     }
-
-//     if (!values.lastName) {
-//         errors.lastName = 'Required';
-//     } else if (values.lastName.length > 20) {
-//         errors.lastName = 'Must be 20 characters or less';
-//     }
-
-//     if (!values.email) {
-//         errors.email = 'Required';
-//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//         errors.email = 'Invalid email address';
-//     }
-//     return errors
-// }
 
 const MyTextInput = ({ label, ...props }) => {
     const [field, meta] = useField(props);
@@ -76,17 +50,18 @@ const MySelect = ({ label, ...props }) => {
     )
 }
 
-const SignupForm = () => {
+const ProjectForm = () => {
     return ( 
         <>
-        <h1>Subscribe!</h1>
+        <h1>Create a Project</h1>
         <Formik
             initialValues={{ 
                 firstName: "", 
                 lastName: "", 
                 email: "",
                 acceptedTerms: false,
-                jobType: ""}}
+                role: "",
+            }}
             validationSchema={Yup.object({
                 firstName: Yup.string()
                     .max(15, 'Must be 15 characters or less')
@@ -156,7 +131,7 @@ const SignupForm = () => {
 };
 
 function App() {
-    return <SignupForm />
+    return <ProjectForm />
 }
 
 const rootElement = document.getElementById("root");
