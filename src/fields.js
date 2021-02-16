@@ -1,4 +1,7 @@
-export const descriptions = [
+export const descriptions = {
+    name: "Description",
+    value: "description",
+    selections: [
     'Feature',
     'Activity',
     'Database',
@@ -8,9 +11,13 @@ export const descriptions = [
     'Data Visualization',
     'Data Tracking',
     'Design Library Component'
-]
+    ]
+}
 
-export const objectives = [
+export const objectives = {
+    name: "Objectives",
+    value: "objectives",
+    selections: [
     'Added Functionality',
     'Provide Direction',
     'Decreate Time of Completion',
@@ -22,49 +29,68 @@ export const objectives = [
     'Keep User Informed',
     'Provide User with Relative Information',
     'Provice Actionable Data'
-]
+    ]
+}
 
-export const targetAudiences = [
+export const targetAudiences = {
+    name: "Target Audiences",
+    value: "targetAudiences",
+    selections: [
     'Active Bootcamp Students',
     'Recently Graduated',
     'Instructors',
     'Interviewees',
     'Hiring Managers'
-]
+]}
 
-export const roles = [
+export const roles = {
+    name: "Roles",
+    value: "roles",
+    selections: [
     'Engineer',
     'Designer',
     'Data Scientist',
     'Mentor'
-]
+]}
 
-export const successCriteria = [
+export const successCriteria = {
+    name: "Success Criteria",
+    value: "successCriteria",
+    selections: [
     'Gather Data',
     'Understand Behavior',
     'Change Behavior',
     'Reduce Friction'
-]
+]}
 
-export const implementations = [
+export const implementations = {
+    name: "Implementations",
+    value: "implementations",
+    selections: [
     'Testing',
     'Data Collection',
     'Analytics'
-]
+]}
 
-export const scopes = [
+export const scopes = {
+    name: "Scopes",
+    value: "scopes",
+    selections: [
     'CSS Changes',
     'New Assets',
     'New Template',
     'Create/Modify Component',
     'Create New Flow'
-]
+]}
 
-export const scopeTiming = [
+export const scopeTiming = {
+    name: "Scope Timing",
+    value: "scopeTiming",
+    selections: [
     'Will Do',
     'Might Do',
     'Will Not Do'
-]
+]}
 
 export const deliverables = [{ 
     'code': [
@@ -82,13 +108,19 @@ export const deliverables = [{
     ]}
 ]
 
-export const timings = [
+export const timings = {
+    name: "Timings",
+    value: "timings",
+    selections: [
     'Due Date',
     'Number of Sprints',
     'Roadmap'
-]
+]}
 
-export const engineeringSkills = [
+export const engineeringSkills = {
+    name: "Engineering Skills",
+    value: "engineeringSkills",
+    selections: [
     'Graph Databases',
     'Machine Learning',
     'React Libraries',
@@ -98,9 +130,12 @@ export const engineeringSkills = [
     'Authentication',
     'CSS',
     'Git Workflow'
-]
+]}
 
-export const engineeringTechnologies = [
+export const engineeringTechnologies = {
+    name: "Engineering Technologes",
+    value: "engineeringTechnologies",
+    selections: [
     'React.js',
     'Node.js',
     'Passport.js',
@@ -114,18 +149,24 @@ export const engineeringTechnologies = [
     'Python',
     'Django',
     'Typescript'
-]
+]}
 
-export const designSkills = [
+export const designSkills = {
+    name: "Design Abilities",
+    value: "designAbilities",
+    selections: [
     'User Research',
     'Interaction Design',
     'Design Systems',
     'Information Architecture',
     'UI/Visual Design',
     'UX Strategy'
-]
+]}
 
-export const myDesignSkills = [
+export const myDesignSkills = {
+    name: "Design Skills",
+    value: "designSkills",
+    selections: [
     'Clickable Prototyping',
     'Interactive Prototyping',
     'Lean Methodologies',
@@ -134,16 +175,40 @@ export const myDesignSkills = [
     'Usability Testing',
     'User Flows',
     'Synthesizing and Insights'
-]
+]}
 
-export const dependencies = [
+export const dependencies = {
+    name: "Dependencies",
+    value: "dependencies",
+    selections: [
     'blocked by tech',
     'blocked by a task',
     'blocked by a person/team'
-]
+]}
 
-export const risks = [
+export const risks = {
+    name: "Risks",
+    value: "risks",
+    selections: [
     'What could go wrong?',
     'What if we miss our deadline?',
     'What are we missing out on?'
+]}
+
+export const projectFields = [ 
+    descriptions,
+    objectives,
+    targetAudiences,
+    roles,
+    successCriteria,
+    implementations,
+    scopes,
+    scopeTiming,
+    timings,
+    engineeringSkills,
+    engineeringTechnologies,
+    designSkills,
+    myDesignSkills,
+    dependencies,
+    risks
 ]

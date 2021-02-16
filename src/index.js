@@ -3,84 +3,62 @@ import ReactDom from 'react-dom';
 import { 
     Formik, 
     Form, 
-    useField 
     } from 'formik';
 import * as Yup from 'yup'
 import * as Fields from './fields'
+import * as Inputs from './inputs'
 import './styles.css';
 
-const MyTextInput = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-        <>
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <input className="text-input" {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null}
-        </>
-    );
-};
-
-const MyCheckBox = ({ children, ...props }) => {
-    const [field, meta] = useField({ ...props, type: 'checkbox' });
-    return (
-        <div>
-            <label className="checkbox-input">
-                <input type="checkbox" {...field} {...props} />
-                {children}
-            </label>
-            {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null}
-        </div>
-    );
-};
-
-const MySelect = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-        <div>
-            <label htmlFor={props.id || props.name}>{label}</label>
-            <select {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null}
-        </div>
-    )
-}
-
 const ProjectForm = () => {
+
+    function formValues(){
+        let arr = []
+        Fields.projectFields.forEach(field => {
+            const object = {}
+            Object.defineProperty(object, `${field.name}`, { value: " ", writable: true })
+            arr.push(
+                object
+                // (`${field.name}: ""`)
+                )
+        })
+        return arr
+    }
+    const initValues = formValues()
+    
     return ( 
         <>
         <h1>Create a Project</h1>
         <Formik
-            initialValues={{ 
-                firstName: "", 
-                lastName: "", 
-                email: "",
-                acceptedTerms: false,
-                role: "",
+            initialValues={{
+                name: "",
+                description: "",
+                objectives: "",
+                targetAudiences: "",
+                roles: "",
+                successCriteria: "",
+                implementations: "",
+                scopes: "",
+                scopeTiming: "",
+                Timings: "",
+                engineeringSkills: "",
+                designAbilities: "",
+                dependencies: "",
+                risks: "",
+                acceptedTerms: false
             }}
             validationSchema={Yup.object({
-                firstName: Yup.string()
+                name: Yup.string()
                     .max(15, 'Must be 15 characters or less')
-                    .required('Required'),
-                lastName: Yup.string() 
-                    .max(20, 'Must be 20 characters or less')
-                    .required('Required'),
-                email: Yup.string()
-                    .email('Invalid email address')
                     .required('Required'),
                 acceptedTerms: Yup.boolean()
                     .required('Required')
-                    .oneOf([true], 'You must accept the terms and conditions'),
-                jobType: Yup.string()
-                    .oneOf(
-                        ['designer', 'development', 'product', 'other'],
-                        'Invalid job type'
-                    )
-                    .required('Required')
+                    .oneOf([true], 'Check the box to confirm Project creation.'),
+                // jobType: Yup.string()
+                //     .oneOf(
+                //         ['designer', 'development', 'product', 'other'],
+                //         'Invalid job type'
+                //     )
+                //     .required('Required')
             })}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
@@ -90,38 +68,20 @@ const ProjectForm = () => {
             }}
         >
         <Form>
-            <MyTextInput 
-                label="First Name"
-                name="firstName"
-                type="text"
-                placeholder="Cory"
-            />
+            <Inputs.MyTextInput label="Project Name"name="name"type="text"placeholder="User Rolodex"/>
 
-            <MyTextInput 
-                label="Last Name"
-                name="lastName"
-                type="text"
-                placeholder="Doe"
-            />
+            { Fields.projectFields.map(f =>(
+                <Inputs.MySelect label={f.name} name={f.value}>
+                    <option value=""></option>
+                    {f.selections.map(s => (
+                        <option value={s}>{s}</option>
+                    ))}
+                </Inputs.MySelect>
+            ))}
 
-            <MyTextInput
-                label="Email Address"
-                name="email"
-                type="email"
-                placeholder="cory@cory.com"
-            />
-
-            <MySelect label="Job Type" name="jobType">
-                <option value="">Select a job type</option>
-                <option value="designer">Designer</option>
-                <option value="development">Developer</option>
-                <option value="product">Product Manager</option>
-                <option value="other">Other</option>
-            </MySelect>
-
-            <MyCheckBox name="acceptedTerms">
-                I accept the terms and conditions.
-            </MyCheckBox>
+            <Inputs.MyCheckBox name="acceptedTerms">
+                I'm ready to create a new project.
+            </Inputs.MyCheckBox>
 
             <button type="submit">Submit</button>
         </Form>
